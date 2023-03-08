@@ -19,11 +19,13 @@ internal class Program
         }
         */
 
-        string palavra;
+        string palavra, resultante;
         int consoante, contador = 0;
 
         Console.WriteLine("Digite uma palavra: ");
         palavra = Console.ReadLine();
+
+        resultante = InsereCaractere(palavra);
 
         Console.WriteLine("A palavra digitada contém {0} caracteres", palavra.Length); 
 
@@ -44,17 +46,51 @@ internal class Program
            
         }
 
-        Vogais(palavra);
+        int resultado = Vogais(palavra);
 
-        consoante = palavra.Length - contador;
+        consoante = palavra.Length - resultado;
 
-        Console.WriteLine("A palavra digitada contém {0} vogais", contador);
+        Console.WriteLine("A palavra digitada contém {0} vogais", resultado);
 
         Console.WriteLine("A palavra digitada contém {0} consoantes", consoante);
 
         Console.WriteLine(palavra.ToLower());
 
         Console.WriteLine(palavra.ToUpper());
+
+
+
+        Console.WriteLine(resultante);
+
+        string InsereCaractere(string palavra)
+        {
+            char[] aux = new char[palavra.Length*2];
+
+            string alterada = "";
+            for (int i = 0, j = 0; i < palavra.Length; i++)
+            {
+                if ((palavra[i] != 'a') && (palavra[i] != 'e') && (palavra[i] != 'i') && (palavra[i] != 'o') && (palavra[i] != 'u'))
+                {
+                    aux[j] = '.';
+                    aux[j+1] = palavra[i];
+                    j+=2;
+                }
+                else
+                {
+                    aux[j] = palavra[i];
+                    j++;
+                }
+            }
+
+            for (int i = 0; i < aux.Length; i++)
+            {
+                alterada += aux[i];
+            }
+
+            return alterada;
+        }
+
+
 
         Console.ReadLine();
     }
